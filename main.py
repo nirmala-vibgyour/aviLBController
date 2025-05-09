@@ -1,8 +1,12 @@
+from dotenv import load_dotenv
 import requests
+import os
 
-controller="35.200.176.139"
-username="hiring-2"
-password="hiring-2"
+load_dotenv()
+
+controller=os.getenv("ip")
+username=os.getenv("username")
+password=os.getenv("password")
 
 login = requests.post(f'https:://{controller}/login', data={'username':username, 'password': password}, verify=False)
 
