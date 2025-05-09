@@ -1,13 +1,13 @@
 import requests
 
-controller=""
-username=""
-password=""
+controller="35.200.176.139"
+username="hiring-2"
+password="hiring-2"
 
-login = requests.post(f'https:://{controller}/login', data={'username':'', 'password':''}, verify=False)
+login = requests.post(f'https:://{controller}/login', data={'username':username, 'password': password}, verify=False)
 
 if login.status_code !=200:
-    print(f'Login failerd with status code: {login.status_code}')
+    print(f'Login failed with status code: {login.status_code}')
     print(login.text)
     exit()
 
@@ -33,7 +33,11 @@ cookies = {
     'sessionid': sessionid
 }
 
-resp = requests.get(f'https://{controller}/api/tenant', headers=headers, cookies=cookies,verify=False)
+data = {
+    'name': 'nirmala chowdhury-tenant_2'
+}
+
+resp = requests.post(f'https://{controller}/api/tenant', headers=headers, json=data, cookies=cookies, verify=False)
 
 if resp.status_code == 200:
     print("Tenant data")
