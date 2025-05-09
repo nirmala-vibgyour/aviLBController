@@ -7,8 +7,9 @@ load_dotenv()
 controller=os.getenv("ip")
 username=os.getenv("username")
 password=os.getenv("password")
+version=os.getenv("version")
 
-login = requests.post(f'https:://{controller}/login', data={'username':username, 'password': password}, verify=False)
+login = requests.post(f'https://{controller}/api/user/login', json={'username':username, 'password': password}, verify=False)
 
 if login.status_code !=200:
     print(f'Login failed with status code: {login.status_code}')
@@ -28,7 +29,7 @@ if not csrftoken or not sessionid:
 headers = {
     'Content-Type': 'application/json',
     'X-CSRFToken': csrftoken,
-    'X-Avi-Version': '',
+    'X-Avi-Version': version,
     'Referer': f'https://{controller}'
 }
 
