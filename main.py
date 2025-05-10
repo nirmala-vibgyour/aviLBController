@@ -9,7 +9,7 @@ username=os.getenv("username")
 password=os.getenv("password")
 version=os.getenv("version")
 
-login = requests.post(f'https://{controller}/api/user/login', json={'username':username, 'password': password}, verify=False)
+login = requests.post(f'https://{controller}/login', json={'username':username, 'password': password}, verify=False)
 
 if login.status_code !=200:
     print(f'Login failed with status code: {login.status_code}')
